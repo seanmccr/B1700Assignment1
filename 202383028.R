@@ -5,7 +5,6 @@
 # Code to load packages to library
 library(ggplot2)
 library(tidyverse)
-
 library(dplyr)
 
 ##### 4.1.2 Import remote file and check import #####
@@ -16,14 +15,11 @@ my_data <- read.csv("https://www.dropbox.com/scl/fi/sl5uzrjkfaconpxausb4o/raw_da
 head(my_data, n = 10)
 str(my_data)
 
-
-
 ##### 4.1.3 Cleaning Data #####
 # Code to remove 'NA' returns and the 'X' variable
 my_data_02 <- na.omit(my_data)
 my_data_03 <- subset(my_data_02, select = -c(X))
-  
-  
+
 ##### 4.1.4 Renaming Variables #####
 # Code to rename the variables in the dataset
 my_data_03 <- my_data_03 %>%
@@ -57,7 +53,7 @@ remove_outliers <- function(df, columns, z_threshold = 2) {
   }
   df_cleaned
 }
-my_data_04 <- remove_outliers(my_data_03, c("home_score", "oppos_score"))
+my_data_04 <- remove_outliers(my_data_03, c("home_score", "oppos_score"), 2)
 
 # Code to show the range of the particular variables in each dataset
 cat("Range of home_score in my_data_03:", range(my_data_03$home_score), "\n")
